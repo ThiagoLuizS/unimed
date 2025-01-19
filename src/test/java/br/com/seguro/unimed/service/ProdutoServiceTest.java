@@ -43,7 +43,7 @@ public class ProdutoServiceTest extends AbstractServiceTest {
             produtoService.saveToView(produtoForm);
         } catch (Exception e) {
             assertThat(e).isExactlyInstanceOf(GlobalException.class);
-            assertThat(e.getMessage()).contains("[Column 'nome' cannot be null]");
+            assertThat(e.getMessage()).contains(messageErrorConstraint);
         }
     }
 
@@ -57,7 +57,7 @@ public class ProdutoServiceTest extends AbstractServiceTest {
             produtoService.saveToView(produtoForm);
         } catch (Exception e) {
             assertThat(e).isExactlyInstanceOf(GlobalException.class);
-            assertThat(e.getMessage()).contains("[Column 'preco' cannot be null]");
+            assertThat(e.getMessage()).contains(messageErrorConstraint);
         }
     }
 

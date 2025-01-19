@@ -11,6 +11,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 public class AbstractServiceTest {
 
+    public static final String messageErrorConstraint = "Alguns itens informados não existem na base de dados. Verifique se existe algum valor nulo e tente novamente.";
+    public static final String messageNotFound = "Nenhum registro encontrado";
+
     // Container compartilhado
     private static final MySQLContainer<?> MYSQL_CONTAINER = new MySQLContainer<>("mysql:8.0")
             .withDatabaseName("testdb")

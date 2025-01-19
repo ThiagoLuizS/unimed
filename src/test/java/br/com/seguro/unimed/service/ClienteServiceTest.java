@@ -38,7 +38,7 @@ public class ClienteServiceTest extends AbstractServiceTest {
             clienteService.saveToView(clienteForm);
         } catch (Exception e) {
             assertThat(e).isExactlyInstanceOf(GlobalException.class);
-            assertThat(e.getMessage()).contains("[Column 'email' cannot be null]");
+            assertThat(e.getMessage()).contains(messageErrorConstraint);
         }
     }
 
@@ -53,7 +53,7 @@ public class ClienteServiceTest extends AbstractServiceTest {
             clienteService.saveToView(clienteForm);
         } catch (Exception e) {
             assertThat(e).isExactlyInstanceOf(GlobalException.class);
-            assertThat(e.getMessage()).contains("[Column 'nome' cannot be null]");
+            assertThat(e.getMessage()).contains(messageErrorConstraint);
         }
     }
 
