@@ -9,32 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Testcontainers
 @SpringBootTest
-public class ClienteServiceTest {
-
-    @Container
-    private static final MySQLContainer<?> MYSQL_CONTAINER = new MySQLContainer<>("mysql:8.0")
-            .withDatabaseName("testdb")
-            .withUsername("testuser")
-            .withPassword("testpass");
+public class ClienteServiceTest extends AbstractServiceTest {
 
     @Autowired
     private ClienteService clienteService;
-
-    @DynamicPropertySource
-    static void setProperties(org.springframework.test.context.DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", MYSQL_CONTAINER::getJdbcUrl);
-        registry.add("spring.datasource.username", MYSQL_CONTAINER::getUsername);
-        registry.add("spring.datasource.password", MYSQL_CONTAINER::getPassword);
-    }
 
     @Test
     void salvarComSucesso() {
@@ -43,7 +27,7 @@ public class ClienteServiceTest {
                 .email("teste@gmail.com")
                 .build();
 
-        ClienteView view = clienteService.save(clienteForm);
+        ClienteView view = clienteService.saveToView(clienteForm);
 
         assertThat(view.getId()).isNotNull();
     }
@@ -55,7 +39,7 @@ public class ClienteServiceTest {
                 .build();
 
         try {
-            clienteService.save(clienteForm);
+            clienteService.saveToView(clienteForm);
         } catch (Exception e) {
             assertThat(e).isExactlyInstanceOf(GlobalException.class);
             assertThat(e.getMessage()).contains("[Column 'email' cannot be null]");
@@ -70,7 +54,7 @@ public class ClienteServiceTest {
                 .build();
 
         try {
-            clienteService.save(clienteForm);
+            clienteService.saveToView(clienteForm);
         } catch (Exception e) {
             assertThat(e).isExactlyInstanceOf(GlobalException.class);
             assertThat(e.getMessage()).contains("[Column 'nome' cannot be null]");
@@ -84,7 +68,7 @@ public class ClienteServiceTest {
                 .email("teste@gmail.com")
                 .build();
 
-        ClienteView view = clienteService.save(clienteForm);
+        ClienteView view = clienteService.saveToView(clienteForm);
 
         assertThat(view.getId()).isNotNull();
 
@@ -100,7 +84,7 @@ public class ClienteServiceTest {
                 .email("teste@gmail.com")
                 .build();
 
-        ClienteView view = clienteService.save(clienteForm);
+        ClienteView view = clienteService.saveToView(clienteForm);
 
         assertThat(view.getId()).isNotNull();
 

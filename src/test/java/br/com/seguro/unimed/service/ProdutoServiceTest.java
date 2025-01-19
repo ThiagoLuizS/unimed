@@ -29,7 +29,7 @@ public class ProdutoServiceTest {
                 .preco(BigDecimal.ONE)
                 .build();
 
-        ProdutoView view = produtoService.save(produtoForm);
+        ProdutoView view = produtoService.saveToView(produtoForm);
 
         assertThat(view.getId()).isNotNull();
     }
@@ -42,7 +42,7 @@ public class ProdutoServiceTest {
                 .build();
 
         try {
-            produtoService.save(produtoForm);
+            produtoService.saveToView(produtoForm);
         } catch (Exception e) {
             assertThat(e).isExactlyInstanceOf(GlobalException.class);
             assertThat(e.getMessage()).contains("[Column 'nome' cannot be null]");
@@ -56,7 +56,7 @@ public class ProdutoServiceTest {
                 .build();
 
         try {
-            produtoService.save(produtoForm);
+            produtoService.saveToView(produtoForm);
         } catch (Exception e) {
             assertThat(e).isExactlyInstanceOf(GlobalException.class);
             assertThat(e.getMessage()).contains("[Column 'preco' cannot be null]");
@@ -70,7 +70,7 @@ public class ProdutoServiceTest {
                 .preco(BigDecimal.ONE)
                 .build();
 
-        ProdutoView view = produtoService.save(produtoForm);
+        ProdutoView view = produtoService.saveToView(produtoForm);
 
         assertThat(view.getId()).isNotNull();
 
@@ -86,7 +86,7 @@ public class ProdutoServiceTest {
                 .preco(BigDecimal.ONE)
                 .build();
 
-        ProdutoView view = produtoService.save(produtoForm);
+        ProdutoView view = produtoService.saveToView(produtoForm);
 
         assertThat(view.getId()).isNotNull();
 

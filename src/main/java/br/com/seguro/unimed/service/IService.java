@@ -4,7 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IService<Entity, View, Form> {
-    View save(Form form);
+    View saveToView(Form form);
+    Entity saveToEntity(Entity entity);
+    View saveEntityToView(Entity entity);
     View getById(Long id);
     Page<View> getAll(Pageable pageable);
 }
