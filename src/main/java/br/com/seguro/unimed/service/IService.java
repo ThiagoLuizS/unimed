@@ -10,4 +10,5 @@ public interface IService<Entity, View, Form> {
     View getByIdToView(Long id);
     Entity getById(Long id);
     Page<View> getAll(Pageable pageable);
+    View update(Long id, Form form);
 }

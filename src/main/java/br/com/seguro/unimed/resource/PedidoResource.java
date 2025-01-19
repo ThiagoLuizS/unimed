@@ -8,4 +8,5 @@ public interface PedidoResource {
 
     @PostMapping("/{clienteId}")
     PedidoView salvarPedido(@PathVariable("clienteId") Long clienteId);
+
 }

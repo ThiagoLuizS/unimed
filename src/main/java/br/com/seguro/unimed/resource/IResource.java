@@ -16,4 +16,8 @@ public interface IResource<Entity, View, Form> {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     View save(@Valid @RequestBody Form form);
+
+    @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    View update(@PathVariable("id") Long id,
+                               @Valid @RequestBody Form form);
 }

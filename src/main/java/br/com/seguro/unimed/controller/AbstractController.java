@@ -23,4 +23,9 @@ public abstract class AbstractController<Entity, View, Form> implements IResourc
     public View save(Form form) {
         return getService().saveToView(form);
     }
+
+    @Override
+    public View update(Long id, Form form) {
+        return getService().update(id, form);
+    }
 }

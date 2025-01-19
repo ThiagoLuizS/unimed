@@ -15,6 +15,7 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
     protected abstract MapStructMapper<Entity, View, Form> getMapper();
 
     private static final String messageErrorConstraint = "Alguns itens informados não existem na base de dados. Verifique se existe algum valor nulo e tente novamente.";
+    private static final String messageErrorNotFount = "Nenhum registro encontrado";
 
     @Override
     public View saveToView(Form form) {
@@ -81,7 +82,7 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
         log.info(">> View [id={}] ", id);
         View view = getRepository().findById(id)
                 .map(getMapper()::entityToView)
-                .orElseThrow(() -> new GlobalException("Nenhum registro encontrado."));
+                .orElseThrow(() -> new GlobalException(messageErrorNotFount));
         log.info("<< View [view={}] ", view);
         return view;
     }
@@ -90,8 +91,19 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
     public Entity getById(Long id) {
         log.info(">> entity [id={}] ", id);
         Entity entity = getRepository().findById(id)
-                .orElseThrow(() -> new GlobalException("Nenhum registro encontrado."));
+                .orElseThrow(() -> new GlobalException(messageErrorNotFount));
         log.info("<< entity [entity={}] ", entity);
         return entity;
+    }
+
+    @Override
+    public View update(Long id, Form form) {
+        log.info(">>[id={}, form={}] ", id, form);
+        Entity entity = getRepository().findById(id)
+                .orElseThrow(() -> new GlobalException(messageErrorNotFount));
+        getMapper().updateToEntity(entity, form);
+        entity = saveToEntity(entity);
+        log.info("<<[entity={}, id={}, form={}] ", entity, id, form);
+        return getMapper().entityToView(entity);
     }
 }

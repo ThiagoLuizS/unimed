@@ -33,4 +33,9 @@ public class PedidoController extends AbstractController<Pedido, PedidoView, Ped
     public PedidoView salvarPedido(Long clienteId) {
         return service.salvarPedido(clienteId);
     }
+
+    @Override
+    public PedidoView update(Long pedidoId, PedidoForm pedido) {
+        return service.update(pedidoId, pedido);
+    }
 }

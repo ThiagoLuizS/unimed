@@ -43,12 +43,12 @@ public class PedidoService extends AbstractService<Pedido, PedidoView, PedidoFor
         log.info("Salvando pedido [clienteId={}]", clienteId);
         Cliente cliente = clienteService.getById(clienteId);
 
-        PedidoForm pedidoForm = PedidoForm.builder()
+        Pedido pedido = Pedido.builder()
                 .clienteId(cliente.getId())
                 .dataCriacao(new Date())
                 .status(StatusPedidoEnum.CRIADO)
                 .build();
 
-        return saveToView(pedidoForm);
+        return saveEntityToView(pedido);
     }
 }
