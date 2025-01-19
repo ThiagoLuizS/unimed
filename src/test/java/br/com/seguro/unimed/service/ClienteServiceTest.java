@@ -6,15 +6,11 @@ import br.com.seguro.unimed.models.dto.view.ClienteView;
 import br.com.seguro.unimed.service.impl.ClienteService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Testcontainers
-@SpringBootTest
 public class ClienteServiceTest extends AbstractServiceTest {
 
     @Autowired
