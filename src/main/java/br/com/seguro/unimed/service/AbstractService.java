@@ -3,6 +3,7 @@ package br.com.seguro.unimed.service;
 import br.com.seguro.unimed.exception.GlobalException;
 import br.com.seguro.unimed.models.mapper.MapStructMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -77,6 +78,14 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
         return page;
     }
 
+    /**
+     * #ThiagoLuizS
+     * Método responsavel por obter dados por id do banco de dados
+     * O método está cacheado abstraindo a ida ao banco de dados toda vez que for chamado.
+     * Tendo essa validação o método irá retornar do caching a ultima consulta.
+     * Caso o cache expire o método irá consultar direto ao banco de dados.
+     * */
+    @Cacheable(value = "getByIdToView", key = "#id")
     @Override
     public View getByIdToView(Long id) {
         log.info(">> View [id={}] ", id);
