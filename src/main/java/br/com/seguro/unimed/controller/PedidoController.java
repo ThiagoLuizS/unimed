@@ -8,8 +8,6 @@ import br.com.seguro.unimed.service.AbstractService;
 import br.com.seguro.unimed.service.impl.PedidoService;
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,10 +32,5 @@ public class PedidoController extends AbstractController<Pedido, PedidoView, Ped
     @Override
     public PedidoView salvarPedido(Long clienteId) {
         return service.salvarPedido(clienteId);
-    }
-
-    @Override
-    public Page<PedidoView> getAllByClienteId(Long clienteId, int page, int size) {
-        return service.getAllByClienteId(clienteId, PageRequest.of(page, size));
     }
 }

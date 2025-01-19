@@ -12,6 +12,7 @@ import br.com.seguro.unimed.service.AbstractService;
 import br.com.seguro.unimed.service.IPedidoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -52,12 +53,5 @@ public class PedidoService extends AbstractService<Pedido, PedidoView, PedidoFor
                 .build();
 
         return saveToView(pedidoForm);
-    }
-
-    @Override
-    public Page<PedidoView> getAllByClienteId(Long clienteId, Pageable pageable) {
-        Cliente cliente = clienteService.getById(clienteId);
-        return pedidoRepository.findByClienteId(cliente.getId(), pageable)
-                .map(getMapper()::entityToView);
     }
 }
