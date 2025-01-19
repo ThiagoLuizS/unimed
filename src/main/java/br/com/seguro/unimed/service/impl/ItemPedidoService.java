@@ -48,7 +48,7 @@ public class ItemPedidoService extends AbstractService<ItemPedido, ItemPedidoVie
 
         List<ItemPedido> itensPedido = new ArrayList<>();
 
-        itensPedidoForm.stream().forEach(itemForm -> {
+        itensPedidoForm.forEach(itemForm -> {
             Produto produto = produtoService.getById(itemForm.getProdutoId());
             ItemPedido itemPedido = ItemPedido.builder()
                     .produto(produto)

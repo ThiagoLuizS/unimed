@@ -56,7 +56,8 @@ public class PedidoService extends AbstractService<Pedido, PedidoView, PedidoFor
 
     @Override
     public Page<PedidoView> getAllByClienteId(Long clienteId, Pageable pageable) {
-        return pedidoRepository.findByClienteId(clienteId, pageable)
+        Cliente cliente = clienteService.getById(clienteId);
+        return pedidoRepository.findByClienteId(cliente.getId(), pageable)
                 .map(getMapper()::entityToView);
     }
 }
