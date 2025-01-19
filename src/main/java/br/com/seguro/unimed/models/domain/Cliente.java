@@ -21,5 +21,5 @@ public class Cliente {
     private String email;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Pedido> pedidos = new ArrayList<>();
+    private List<Pedido> pedidos;
 }

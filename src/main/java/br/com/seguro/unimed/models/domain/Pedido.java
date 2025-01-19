@@ -32,5 +32,5 @@ public class Pedido {
     private StatusPedidoEnum status;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<ItemPedido> itemPedidos = new ArrayList<>();
+    private List<ItemPedido> itemPedidos;
 }

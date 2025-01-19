@@ -16,5 +16,5 @@ public class ClienteView {
     private String nome;
     private String email;
     @JsonManagedReference
-    private List<PedidoView> pedidos = new ArrayList<>();
+    private List<PedidoView> pedidos;
 }
