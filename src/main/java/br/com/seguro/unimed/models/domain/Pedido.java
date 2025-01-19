@@ -1,6 +1,7 @@
 package br.com.seguro.unimed.models.domain;
 
 import br.com.seguro.unimed.models.enums.StatusPedidoEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,9 +20,8 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
     @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    private Long clienteId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_criacao")
@@ -30,6 +30,6 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedidoEnum status;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "pedidoId", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<ItemPedido> itemPedidos;
 }

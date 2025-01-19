@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class ItemPedidoView {
     private Long id;
-    private PedidoView pedido;
+    private Long pedidoId;
     private ProdutoView produto;
     private Integer quantidade;
 }

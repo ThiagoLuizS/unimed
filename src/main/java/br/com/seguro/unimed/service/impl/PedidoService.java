@@ -12,9 +12,6 @@ import br.com.seguro.unimed.service.AbstractService;
 import br.com.seguro.unimed.service.IPedidoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +44,7 @@ public class PedidoService extends AbstractService<Pedido, PedidoView, PedidoFor
         Cliente cliente = clienteService.getById(clienteId);
 
         PedidoForm pedidoForm = PedidoForm.builder()
-                .cliente(cliente)
+                .clienteId(cliente.getId())
                 .dataCriacao(new Date())
                 .status(StatusPedidoEnum.CRIADO)
                 .build();

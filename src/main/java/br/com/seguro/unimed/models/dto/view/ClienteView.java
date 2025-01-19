@@ -1,9 +1,7 @@
 package br.com.seguro.unimed.models.dto.view;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data

@@ -11,4 +11,5 @@ public interface ClienteMapper extends MapStructMapper<Cliente, ClienteView, Cli
     @Override
     @Mapping(target = "id", ignore = true)
     Cliente formToEntity(ClienteForm clienteForm);
+
 }

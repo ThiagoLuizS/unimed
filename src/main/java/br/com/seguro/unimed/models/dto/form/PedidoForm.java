@@ -1,6 +1,5 @@
 package br.com.seguro.unimed.models.dto.form;
 
-import br.com.seguro.unimed.models.domain.Cliente;
 import br.com.seguro.unimed.models.enums.StatusPedidoEnum;
 import lombok.*;
 
@@ -12,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PedidoForm {
-    private Cliente cliente;
+    private Long clienteId;
     private Date dataCriacao;
     private StatusPedidoEnum status;
 }

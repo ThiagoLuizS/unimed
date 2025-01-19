@@ -53,7 +53,7 @@ public class ItemPedidoService extends AbstractService<ItemPedido, ItemPedidoVie
             ItemPedido itemPedido = ItemPedido.builder()
                     .produto(produto)
                     .quantidade(itemForm.getQuantidade())
-                    .pedido(pedido)
+                    .pedidoId(pedido.getId())
                     .build();
             itensPedido.add(itemPedido);
         });
