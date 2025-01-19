@@ -72,7 +72,7 @@ public class ClienteServiceTest extends AbstractServiceTest {
 
         assertThat(view.getId()).isNotNull();
 
-        ClienteView clienteSalvoView = clienteService.getById(view.getId());
+        ClienteView clienteSalvoView = clienteService.getByIdToView(view.getId());
 
         assertThat(clienteSalvoView).isNotNull();
     }

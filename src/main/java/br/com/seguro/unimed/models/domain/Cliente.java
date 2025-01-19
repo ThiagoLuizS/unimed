@@ -19,6 +19,7 @@ public class Cliente {
     private Long id;
     private String nome;
     private String email;
+
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Pedido> pedidos = new ArrayList<>();
 }

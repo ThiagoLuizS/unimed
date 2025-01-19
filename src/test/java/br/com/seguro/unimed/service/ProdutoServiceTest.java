@@ -74,7 +74,7 @@ public class ProdutoServiceTest {
 
         assertThat(view.getId()).isNotNull();
 
-        ProdutoView produtoSalvoView = produtoService.getById(view.getId());
+        ProdutoView produtoSalvoView = produtoService.getByIdToView(view.getId());
 
         assertThat(produtoSalvoView).isNotNull();
     }

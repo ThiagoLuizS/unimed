@@ -29,5 +29,4 @@ public class ProdutoService extends AbstractService<Produto, ProdutoView, Produt
     protected MapStructMapper<Produto, ProdutoView, ProdutoForm> getMapper() {
         return produtoMapper;
     }
-
 }

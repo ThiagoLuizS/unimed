@@ -1,7 +1,9 @@
 package br.com.seguro.unimed.service;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 
 public abstract class AbstractServiceTest {
@@ -10,7 +12,8 @@ public abstract class AbstractServiceTest {
     private static final MySQLContainer<?> MYSQL_CONTAINER = new MySQLContainer<>("mysql:8.0")
             .withDatabaseName("testdb")
             .withUsername("testuser")
-            .withPassword("testpass");
+            .withPassword("testpass")
+            .waitingFor(Wait.forListeningPort());;
 
     @DynamicPropertySource
     static void setProperties(org.springframework.test.context.DynamicPropertyRegistry registry) {

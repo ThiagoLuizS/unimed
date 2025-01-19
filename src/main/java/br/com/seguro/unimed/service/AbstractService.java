@@ -65,12 +65,21 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
     }
 
     @Override
-    public View getById(Long id) {
+    public View getByIdToView(Long id) {
         log.info(">> View [id={}] ", id);
         View view = getRepository().findById(id)
                 .map(getMapper()::entityToView)
                 .orElseThrow(() -> new GlobalException("Nenhum registro encontrado."));
         log.info("<< View [view={}] ", view);
         return view;
+    }
+
+    @Override
+    public Entity getById(Long id) {
+        log.info(">> entity [id={}] ", id);
+        Entity entity = getRepository().findById(id)
+                .orElseThrow(() -> new GlobalException("Nenhum registro encontrado."));
+        log.info("<< entity [entity={}] ", entity);
+        return entity;
     }
 }

@@ -7,6 +7,7 @@ public interface IService<Entity, View, Form> {
     View saveToView(Form form);
     Entity saveToEntity(Entity entity);
     View saveEntityToView(Entity entity);
-    View getById(Long id);
+    View getByIdToView(Long id);
+    Entity getById(Long id);
     Page<View> getAll(Pageable pageable);
 }
