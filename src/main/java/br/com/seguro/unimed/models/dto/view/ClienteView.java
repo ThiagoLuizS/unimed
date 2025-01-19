@@ -15,6 +15,5 @@ public class ClienteView {
     private Long id;
     private String nome;
     private String email;
-    @JsonManagedReference
     private List<PedidoView> pedidos;
 }

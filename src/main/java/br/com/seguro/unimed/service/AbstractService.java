@@ -3,6 +3,7 @@ package br.com.seguro.unimed.service;
 import br.com.seguro.unimed.exception.GlobalException;
 import br.com.seguro.unimed.models.mapper.MapStructMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +13,8 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
 
     protected abstract JpaRepository<Entity, Long> getRepository();
     protected abstract MapStructMapper<Entity, View, Form> getMapper();
+
+    private static final String messageErrorConstraint = "Alguns itens informados não existem na base de dados. Verifique se existe algum valor nulo e tente novamente.";
 
     @Override
     public View saveToView(Form form) {
@@ -25,6 +28,9 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
             return view;
         } catch (Exception e) {
             log.error("<< SALVAR [error={}]", e.getMessage(), e);
+            if(e instanceof DataIntegrityViolationException) {
+                throw new GlobalException(messageErrorConstraint);
+            }
             throw new GlobalException(e.getMessage());
         }
     }
@@ -38,6 +44,9 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
             return entity;
         } catch (Exception e) {
             log.error("<< SALVAR [error={}]", e.getMessage(), e);
+            if(e instanceof DataIntegrityViolationException) {
+                throw new GlobalException(messageErrorConstraint);
+            }
             throw new GlobalException(e.getMessage());
         }
     }
@@ -51,6 +60,9 @@ public abstract class AbstractService<Entity, View, Form> implements IService<En
             return getMapper().entityToView(entity);
         } catch (Exception e) {
             log.error("<< SALVAR [error={}]", e.getMessage(), e);
+            if(e instanceof DataIntegrityViolationException) {
+                throw new GlobalException(messageErrorConstraint);
+            }
             throw new GlobalException(e.getMessage());
         }
     }

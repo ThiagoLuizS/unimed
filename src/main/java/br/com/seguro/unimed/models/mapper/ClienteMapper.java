@@ -10,6 +10,5 @@ import org.mapstruct.Mapping;
 public interface ClienteMapper extends MapStructMapper<Cliente, ClienteView, ClienteForm> {
     @Override
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "pedidos", ignore = true)
     Cliente formToEntity(ClienteForm clienteForm);
 }
