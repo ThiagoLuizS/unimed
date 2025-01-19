@@ -57,26 +57,6 @@ public class PedidoServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void salvarEBuscarPediddoSalvoPaginadoComSucesso() {
-        ClienteForm clienteForm = ClienteForm.builder()
-                .nome("teste")
-                .email("teste@gmail.com")
-                .build();
-
-        ClienteView clienteView = clienteService.saveToView(clienteForm);
-
-        assertThat(clienteView.getId()).isNotNull();
-
-        PedidoView pedidoView = pedidoService.salvarPedido(clienteView.getId());
-
-        assertThat(pedidoView.getId()).isNotNull();
-
-        Page<PedidoView> page = pedidoService.getAll(Pageable.ofSize(10));
-
-        assertThat(page.getTotalPages()).isNotZero();
-    }
-
-    @Test
     void salvarEBuscarPedidoClienteSalvoPaginadoComSucesso() {
         ClienteForm clienteForm = ClienteForm.builder()
                 .nome("teste")
