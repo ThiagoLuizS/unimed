@@ -4,7 +4,9 @@ import br.com.seguro.unimed.models.enums.StatusPedidoEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -21,4 +23,7 @@ public class Pedido {
     private Date dataCriacao;
     @Enumerated(EnumType.STRING)
     private StatusPedidoEnum status;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<ItemPedido> itemPedidos = new ArrayList<>();
 }
